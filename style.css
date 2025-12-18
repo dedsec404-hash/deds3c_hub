@@ -1,4 +1,4 @@
-  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 * {
   box-sizing: border-box;
@@ -73,24 +73,23 @@ body {
   text-align: center;
 }
 
-/* PFP */
+/* === PFP (PERFECTLY CENTERED) === */
 .pfp-wrapper {
   position: relative;
-  width: 115px;
-  height: 115px;
-  margin: 20px auto 15px;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 15px;
   border-radius: 50%;
 }
 
 .pfp-wrapper::before {
   content: "";
   position: absolute;
-  inset: -4px;
+  inset: -5px;
   border-radius: 50%;
   background: conic-gradient(#00ff88, #00cc66, #00ff88);
   animation: spin 4s linear infinite;
   filter: blur(2px);
-  z-index: 1;
 }
 
 .pfp-wrapper::after {
@@ -99,27 +98,27 @@ body {
   inset: 0;
   border-radius: 50%;
   background: #000;
+}
+
+.pfp-inner {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  overflow: hidden;
   z-index: 2;
 }
 
-.pfp {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+.pfp-inner img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110%;
+  height: 110%;
+  transform: translate(-50%, -50%);
   object-fit: cover;
-  object-position: center;
-  border: 2px solid #00ff88;
-  box-shadow: 0 0 20px #00ff88;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.pfp-wrapper:hover .pfp {
-  transform: scale(1.08);
-  box-shadow: 0 0 35px #00ff88;
-}
-
+/* ROTATION */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

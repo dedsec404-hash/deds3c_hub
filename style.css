@@ -6,20 +6,21 @@
 }
 
 body {
-  background: radial-gradient(circle at top, #00110a, #000);
+  /* Ensures the background is always dark */
+  background: #000 radial-gradient(circle at top, #00110a, #000);
   color: #00ff88;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0; /* Added to prevent scrollbars */
+  min-height: 100vh; /* Changed to min-height for better mobile view */
+  margin: 0;
 }
 
 /* TERMINAL */
 .terminal {
   position: relative;
   width: 370px;
-  /* ADDED: This makes the background solid black so nothing shows through */
+  /* IMPORTANT: Sets the terminal background to solid black */
   background-color: #000; 
   border: 2px solid #00ff88;
   padding: 16px;
@@ -29,7 +30,7 @@ body {
   z-index: 1;
 }
 
-/* SAFETY FIX: This hides the beige laptop image causing the issue */
+/* SAFETY FIX: Hides any image inside the terminal that isn't your profile pic */
 .terminal img:not(.pfp) {
   display: none !important;
 }
@@ -47,7 +48,7 @@ body {
   height: 2px;
   background: rgba(0,255,136,0.15);
   animation: scan 4s linear infinite;
-  pointer-events: none; /* Allows clicking through the scanline */
+  pointer-events: none;
   z-index: 10;
 }
 
@@ -86,7 +87,7 @@ body {
   z-index: 5;
 }
 
-/* PFP */
+/* --- PROFILE PICTURE SECTION --- */
 .pfp-wrapper {
   position: relative;
   width: 115px;
@@ -95,6 +96,7 @@ body {
   border-radius: 50%;
 }
 
+/* The spinning green glow */
 .pfp-wrapper::before {
   content: "";
   position: absolute;
@@ -106,6 +108,7 @@ body {
   z-index: 1;
 }
 
+/* The black background behind the image */
 .pfp-wrapper::after {
   content: "";
   position: absolute;
@@ -115,12 +118,14 @@ body {
   z-index: 2;
 }
 
+/* The image itself */
 .pfp {
   position: relative;
   z-index: 3;
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  /* THIS IS THE KEY: Makes the image fill the circle perfectly */
   object-fit: cover;
   object-position: center;
   border: 2px solid #00ff88;
@@ -137,11 +142,13 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+/* -------------------------------- */
 
 /* GLITCH TEXT */
 .glitch {
   position: relative;
   font-size: 28px;
+  margin: 0; /* Reset margin */
 }
 
 .glitch::before,
@@ -177,13 +184,15 @@ body {
 
 .username {
   color: #00cc66;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px;
 }
 
 .bio {
   font-size: 13px;
   text-align: left;
   margin: 15px 0;
+  line-height: 1.4;
 }
 
 .bio span {
@@ -191,6 +200,10 @@ body {
 }
 
 /* BUTTONS */
+.buttons {
+  margin: 20px 0;
+}
+
 .buttons a {
   display: block;
   margin: 10px 0;
@@ -199,11 +212,13 @@ body {
   color: #00ff88;
   border: 1px solid #00ff88;
   transition: 0.3s;
+  background: transparent;
 }
 
 .buttons a:hover {
   background: #00ff88;
   color: #000;
+  box-shadow: 0 0 15px #00ff88;
 }
 
 /* STATUS */
@@ -211,9 +226,11 @@ body {
   font-size: 11px;
   margin-top: 15px;
   opacity: 0.85;
+  text-align: left;
 }
 
 .online {
+  color: #00ff88;
   animation: blink 1.2s infinite;
 }
 

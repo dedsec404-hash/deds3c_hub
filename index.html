@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hriday Das | deds3c_404</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(10, 10, 12, 0.85);
+            --neon-green: #00ff41;
+            --neon-dim: rgba(0, 255, 65, 0.2);
+            --border-color: #333;
+            --text-main: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        /* 3D Moving Grid Background */
+        .grid-bg {
+            position: absolute;
+            top: 0; left: 0; width: 200%; height: 200%;
+            background-image: 
+                linear-gradient(var(--neon-dim) 1px, transparent 1px),
+                linear-gradient(90deg, var(--neon-dim) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: rotateX(45deg) translateY(-50%) translateZ(-100px);
+            animation: grid-move 10s linear infinite;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        @keyframes grid-move {
+            0% { transform: rotateX(45deg) translateY(0) translateZ(-100px); }
+            100% { transform: rotateX(45deg) translateY(40px) translateZ(-100px); }
+        }
+
+        /* Main Glass Card */
+        .card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            border: 1px solid var(--neon-green);
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.15);
+            margin: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Terminal Header Strip */
+        .card-header {
+            background: rgba(0, 255, 65, 0.1);
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--neon-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'VT323', monospace;
+            color: var(--neon-green);
+            font-size: 1.1rem;
+        }
+
+        .dots span {
+            display: inline-block;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #333;
+            margin-right: 4px;
+        }
+        .dots span:nth-child(1) { background: #ff5f56; }
+        .dots span:nth-child(2) { background: #ffbd2e; }
+        .dots span:nth-child(3) { background: #27c93f; }
+
+        /* Banner */
+        .banner {
+            height: 120px;
+            /* Hacker / Code Background Image */
+            background: url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?q=80&w=1000&auto=format&fit=crop') center/cover;
+            position: relative;
+            opacity: 0.8;
+        }
+        
+        /* Scanlines over banner */
+        .banner::after {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.3) 0px, rgba(0,0,0,0.3) 2px, transparent 2px, transparent 4px);
+        }
+
+        /* Profile Section */
+        .content {
+            padding: 0 25px 35px 25px;
+            text-align: center;
+            position: relative;
+            top: -50px;
+        }
+
+        .profile-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px;
+        }
+
+        .profile-img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--neon-green);
+            background: #000;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Profile Scanner Animation */
+        .scanner-line {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 3;
+            pointer-events: none;
+        }
+        .scanner-line::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* Text Styling */
+        h1 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+            margin-bottom: 2px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .handle {
+            font-family: 'VT323', monospace;
+            color: var(--neon-green);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: rgba(0, 255, 65, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .bio {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            border-left: 2px solid var(--neon-green);
+            padding-left: 15px;
+            text-align: left;
+            background: linear-gradient(90deg, rgba(0,255,65,0.05), transparent);
+        }
+
+        /* "System Link" Buttons */
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #444;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .link-btn:hover {
+            border-color: var(--neon-green);
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+            padding-left: 25px; /* Slide effect */
+        }
+
+        /* Little decorative corner on buttons */
+        .link-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 0; height: 0;
+            border-top: 10px solid var(--neon-green);
+            border-left: 10px solid transparent;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .link-btn:hover::before { opacity: 1; }
+
+        .btn-icon { font-size: 1.2rem; width: 24px; text-align: center; }
+        .arrow { font-size: 0.8rem; color: var(--neon-green); opacity: 0; transition: 0.3s; }
+        .link-btn:hover .arrow { opacity: 1; transform: translateX(-5px); }
+
+        .footer {
+            margin-top: 30px;
+            font-family: 'VT323', monospace;
+            font-size: 0.8rem;
+            color: #555;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="grid-bg"></div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div>ROOT_ACCESS: GRANTED</div>
+        </div>
+
+        <div class="banner"></div>
+
+        <div class="content">
+            <div class="profile-wrapper">
+                <img src="https://avatars.githubusercontent.com/u/70000000?v=4" alt="Hriday" class="profile-img">
+                <div class="scanner-line"></div>
+            </div>
+
+            <h1>Hriday Das</h1>
+            <span class="handle">@deds3c_404</span>
+
+            <div class="bio">
+                <i class="fa-solid fa-terminal" style="margin-right:8px; color:var(--neon-green)"></i>
+                <b>BIO_DATA:</b> Web2 Developer, AI Tinkerer, and Cybersecurity enthusiast. Creating something out of nothing since 2020.
+            </div>
+
+            <div class="links-area">
+                <a href="https://discord.gg/VgBP2QwP" target="_blank" class="link-btn">
+                    <span><i class="fa-brands fa-discord btn-icon"></i> Discord Server</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="https://x.com/deds3c_404" target="_blank" class="link-btn">
+                    <span><i class="fa-brands fa-x-twitter btn-icon"></i> Follow on X</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
+                </a>
+
+                <a href="https://t.me/deds3c_404" target="_blank" class="link-btn">
+                    <span><i class="fa-brands fa-telegram btn-icon"></i> Telegram Uplink</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
+                </a>
+            </div>
+
+            <div class="footer">
+                // SYSTEM_ID: DEDSEC_404 <br> STATUS: ONLINE
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

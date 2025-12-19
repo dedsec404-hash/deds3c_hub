@@ -1,1 +1,1 @@
-console.log("DEDS3C_404 :: ROOT ACCESS GRANTED");
+console.log("DEDS3C_404 :: ALIVE");
